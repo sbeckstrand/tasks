@@ -5,6 +5,7 @@ from django.utils import timezone
 class Term(models.Model):
     name = models.CharField(max_length=200)
     endDate = models.DateTimeField()
+    # user = models.ForeignKey(User, one_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -14,6 +15,7 @@ class Term(models.Model):
 
 class Professor(models.Model):
     name = models.CharField(max_length=200)
+    # user = models.ForeignKey(User, one_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

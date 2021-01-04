@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 
 from .import views
 
@@ -21,4 +21,7 @@ urlpatterns = [
     # Courses (ex1: /courses/ , ex2: /courses/5 )
     path('tasks/', views.tasks, name="tasks"),
     path('tasks/<int:tasks_id>/', views.tasks, name="tasks"),
+
+    #For Authentication
+    path('account/', include('django.contrib.auth.urls')),
 ]
