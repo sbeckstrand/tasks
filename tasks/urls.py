@@ -6,6 +6,9 @@ urlpatterns = [
     # Index Page (ex: / )
     path('', views.index, name='index'),
 
+    # Dashboard
+    path('dashboard/', views.dashboard, name="dashboard"),
+
     # Terms (ex1: /terms/ , ex2: /terms/5 )
     path('terms/', views.terms, name="terms"),
     path('terms/<int:term_id>/', views.terms, name="terms"),
@@ -24,4 +27,6 @@ urlpatterns = [
 
     #For Authentication
     path('account/', include('django.contrib.auth.urls')),
+
+    path('profile/', views.profile, name="profile")
 ]
