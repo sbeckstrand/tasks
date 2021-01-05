@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
 
@@ -10,6 +10,20 @@ def index(request):
     }
 
     return render(request, 'tasks/index.html', context)
+
+def signup(request):
+
+    if request.user.is_authenticated:
+        print("Testing")
+        return HttpResponseRedirect("/dashboard")
+    else:
+        context = {
+        'title': 'Signup'
+        }
+
+        return render(request, 'registration/signup.html', context)
+
+
 
 @login_required
 def profile(request):

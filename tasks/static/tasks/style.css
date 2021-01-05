@@ -5,3 +5,37 @@ body {
 .fa-check-square {
   /* font-size: 2em; */
 }
+
+.btn-custom {
+  color: white;
+  background-color: #006aff;
+  border-color: #006aff;
+}
+
+.btn-outline-custom {
+  border-color: #006aff;
+}
+
+.border-custom {
+  border-color: #006aff !important;
+  border-radius: 5px;
+}
+
+/* Index Page */
+#index-splash {
+  background-color: #006aff;
+}
+
+#signup-form {
+  background-color: white;
+  border-radius: 5px;
+}
+
+#demo-list {
+  background-color: #006aff;
+  border-radius: 5px;
+}
+
+.container input:checked ~ .checkmark {
+ background-color: #408fff;
+}

@@ -1,5 +1,71 @@
 {% include "tasks/base.html" %}
 
-<div> {{ title }} </div>
+<div class="container-fluid">
+  <div class="row" id="index-splash">
+    <div class="col-md-5 py-5 offset-md-1 col-sm-10 offset-sm-1">
+      <h1 class="font-weight-bold text-light">Welcome to Tasks!</h1>
+      <p class="font-weight-light text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et justo sollicitudin, dignissim nulla vitae, mollis ipsum. Etiam scelerisque ligula ac nulla tempus, nec malesuada justo vestibulum. Etiam risus turpis, aliquet in mauris vitae, tincidunt congue lorem. </p>
+    </div>
+    <div class="col-md-4 py-4 col-sm-10 offset-sm-1">
+      <form class="p-3" id="signup-form">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="First Name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Last Name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Username">
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-control" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password">
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-custom px-5 text-align-center">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 py-5 col-sm-10 offset-sm-1">
+      <h1>Stay Organized</h1>
+      <p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et justo sollicitudin, dignissim nulla vitae, mollis ipsum. Etiam scelerisque ligula ac nulla tempus, nec malesuada justo vestibulum. Etiam risus turpis, aliquet in mauris vitae, tincidunt congue lorem. </p>
+
+    </div>
+    <div class="col-md-5 py-5 offset-md-1 col-sm-10 offset-sm-1">
+      <div class="p-3 text-light" id="demo-list">
+        <label class="container">Read and Review Syllabus
+         <input type="checkbox">
+         <span class="checkmark"></span>
+        </label>
+
+        <label class="container">Read Chapter 1
+         <input type="checkbox">
+         <span class="checkmark"></span>
+        </label>
+
+        <label class="container">Study for Chapter 1 Quiz
+         <input type="checkbox">
+         <span class="checkmark"></span>
+        </label>
+
+        <label class="container mb-0">Complete First Homework Assignment
+         <input type="checkbox">
+         <span class="checkmark"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 offset-sm-1">
+      <h1>Open Source</h1>
+      <p class="font-weight-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et justo sollicitudin, dignissim nulla vitae, mollis ipsum. Etiam scelerisque ligula ac nulla tempus, nec malesuada justo vestibulum. Etiam risus turpis, aliquet in mauris vitae, tincidunt congue lorem. </p>
+      <a href="#" class="btn btn-custom">Github Repository <i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</div>
 
 {% include "tasks/footer.html" %}

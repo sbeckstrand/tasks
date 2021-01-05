@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/"><i class="far fa-lg fa-check-square mr-2 d-inline"></i>Tasks</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-2">
+  <a class="navbar-brand" href="/">Tasks</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,25 +7,21 @@
   {% if user.is_authenticated %}
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-
-        <a href="/dashboard">
-            <button class="btn btn-info">Dashboard</button>
-        </a>
-
+        <a class="btn btn-custom" href="/dashboard">Dashboard</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/terms">Terms</a>
+        <a class="nav-link {% if request.path == '/terms/' %} text-dark {% endif %} " href="/terms">Terms</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/courses">Courses</a>
+        <a class="nav-link {% if request.path == '/courses/' %} text-dark {% endif %}" href="/courses">Courses</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/professors">Professors</a>
+        <a class="nav-link {% if request.path == '/professors/' %} text-dark {% endif %}" href="/professors">Professors</a>
       </li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="nav-item">
-        <a class="nav-link" href="/profile">Profile</a>
+        <a class="nav-link {% if request.path == '/profile/' %} text-dark {% endif %}" href="/profile">Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/account/logout">Logout</a>
@@ -34,9 +30,10 @@
   {% else %}
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="/account/login">
-          <button class="btn btn-info">Login</button>
-        </a>
+        <a class="btn btn-outline-custom mr-2 mb-1" href="/account/login">Log In</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-custom" href="/signup">Sign Up</a>
       </li>
     </ul>
   {% endif %}

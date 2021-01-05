@@ -25,8 +25,9 @@ urlpatterns = [
     path('tasks/', views.tasks, name="tasks"),
     path('tasks/<int:tasks_id>/', views.tasks, name="tasks"),
 
-    #For Authentication
-    path('account/', include('django.contrib.auth.urls')),
 
-    path('profile/', views.profile, name="profile")
+    # User Management
+    path('profile/', views.profile, name="profile"),# Profile page to see and update user details
+    path('signup/', views.signup, name="signup"), # User Signup
+    path('account/', include('django.contrib.auth.urls')), # Authentication (Login, Logout, Password Reset)
 ]
