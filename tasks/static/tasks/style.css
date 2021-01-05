@@ -8,22 +8,22 @@ body {
 
 .btn-custom {
   color: white;
-  background-color: #006aff;
-  border-color: #006aff;
+  background-color: #600047;
+  border-color: #600047;
 }
 
 .btn-outline-custom {
-  border-color: #006aff;
+  border-color: #600047;
 }
 
 .border-custom {
-  border-color: #006aff !important;
+  border-color: #600047 !important;
   border-radius: 5px;
 }
 
 /* Index Page */
 #index-splash {
-  background-color: #006aff;
+  background-color: #600047;
 }
 
 #signup-form {
@@ -32,10 +32,10 @@ body {
 }
 
 #demo-list {
-  background-color: #006aff;
+  background-color: #600047;
   border-radius: 5px;
 }
 
 .container input:checked ~ .checkmark {
- background-color: #408fff;
+ background-color: #8f006a;
 }

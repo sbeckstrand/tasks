@@ -3,10 +3,57 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.models import User
+
+def validate_signup(firstName, lastName, email, username, password):
+    signup_errors = []
+
+    if not (firstName.isalpha()):
+        signup_errors.append("First Name contains invalid characters.")
+
+    if not lastName.isalpha():
+        signup_errors.append("Last Name contains invalid characters.")
+
+    # Check if Email already in use and is valid
+        # Need to update this to check that @ and . and TLD are provided. I believe browser only checks for @
+    if len(User.objects.filter(email=email)) > 0:
+        signup_errors.append("The email address '%s' is already in use." % email)
+
+    # Check if username is already in use
+    if len(User.objects.filter(username=username)) > 0:
+        signup_errors.append("The username '%s' is already in use." % username)
+
+
+    if not (firstName and lastName and email and username and password):
+        signup_errors.append("At least one field not filled")
+
+    if not signup_errors:
+        newUser = User(first_name=firstName,last_name=lastName,username=username,email=email,password=password)
+        newUser.save()
+
+    return signup_errors
+
 def index(request):
 
+    signup_errors = []
+    validRegistration = False
+    signupAttempt = False
+
+    if request.method == "POST":
+        pFirst = request.POST['firstName']
+        pLast = request.POST['lastName']
+        pEmail = request.POST['email']
+        pUser = request.POST['username']
+        pPassword = request.POST['password']
+
+        signup_errors = validate_signup(pFirst, pLast, pEmail, pUser, pPassword)
+
+        signupAttempt = True
+
     context = {
-        'title': 'Tasks'
+        'title': 'Tasks',
+        'errors': signup_errors,
+        'signupAttempt': signupAttempt
     }
 
     return render(request, 'tasks/index.html', context)
@@ -22,7 +69,6 @@ def signup(request):
         }
 
         return render(request, 'registration/signup.html', context)
-
 
 
 @login_required
