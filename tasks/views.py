@@ -27,7 +27,7 @@ def index(request):
                 username = form.cleaned_data['username']
                 password = form.cleaned_data['password']
 
-                newUser = User(first_name=firstName,last_name=lastName,email=email,username=username,password=password)
+                newUser = User.objects.create_user(first_name=firstName,last_name=lastName,email=email,username=username,password=password)
                 newUser.save()
 
                 successfulSignup = True
