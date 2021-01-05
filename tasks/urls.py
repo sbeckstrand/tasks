@@ -28,6 +28,6 @@ urlpatterns = [
 
     # User Management
     path('profile/', views.profile, name="profile"),# Profile page to see and update user details
-    path('signup/', views.signup, name="signup"), # User Signup
+    path('signup/', views.index, name="index"), # User Signup
     path('account/', include('django.contrib.auth.urls')), # Authentication (Login, Logout, Password Reset)
 ]

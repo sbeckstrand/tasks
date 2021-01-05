@@ -29,7 +29,7 @@
         </div>
       </form>
     {% elif errors %}
-      <p class="text-light"> Errors during signup! <a href="/" class="text-light">Try again</a></p>
+      <p class="text-light"> Errors during signup! <a href="{{ request.path }}" class="text-light">Try again</a></p>
       <ul class="list-group">
         {% for error in errors %}
         <li class="list-group-item">{{ error }}</li>
