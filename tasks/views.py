@@ -35,28 +35,31 @@ def validate_signup(firstName, lastName, email, username, password):
 
 def index(request):
 
-    signup_errors = []
-    validRegistration = False
-    signupAttempt = False
+    if request.user.is_authenticated:
+        return HttpResponseRedirect("/dashboard")
+    else:
+        signup_errors = []
+        validRegistration = False
+        signupAttempt = False
 
-    if request.method == "POST":
-        pFirst = request.POST['firstName']
-        pLast = request.POST['lastName']
-        pEmail = request.POST['email']
-        pUser = request.POST['username']
-        pPassword = request.POST['password']
+        if request.method == "POST":
+            pFirst = request.POST['firstName']
+            pLast = request.POST['lastName']
+            pEmail = request.POST['email']
+            pUser = request.POST['username']
+            pPassword = request.POST['password']
 
-        signup_errors = validate_signup(pFirst, pLast, pEmail, pUser, pPassword)
+            signup_errors = validate_signup(pFirst, pLast, pEmail, pUser, pPassword)
 
-        signupAttempt = True
+            signupAttempt = True
 
-    context = {
-        'title': 'Tasks',
-        'errors': signup_errors,
-        'signupAttempt': signupAttempt
-    }
+        context = {
+            'title': 'Tasks',
+            'errors': signup_errors,
+            'signupAttempt': signupAttempt
+        }
 
-    return render(request, 'tasks/index.html', context)
+        return render(request, 'tasks/index.html', context)
 
 def signup(request):
 
