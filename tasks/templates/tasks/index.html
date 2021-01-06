@@ -7,38 +7,25 @@
       <p class="font-weight-light text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et justo sollicitudin, dignissim nulla vitae, mollis ipsum. Etiam scelerisque ligula ac nulla tempus, nec malesuada justo vestibulum. Etiam risus turpis, aliquet in mauris vitae, tincidunt congue lorem. </p>
     </div>
     <div class="col-md-4 py-4 col-sm-10 offset-sm-1">
-    {% if signupAttempt == False %}
-      <form class="p-3" id="signup-form" method="POST">{% csrf_token %}
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="First Name" name="firstName" required>
+    {% if successfulSignup %}
+      <div class="p-3 mt-4" id="signup-form">
+        <h3 class="p-0 text-center">Signup Successful</h3>
+        <div class="text-center">
+          <a href="/account/login" class="btn btn-custom text-center">Login</a>
         </div>
+      </div>
+    {% else %}
+      <form class="my-4 p-3" id="signup-form" method="POST">{% csrf_token %}
+      {% for field in form %}
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Last Name" name="lastName" required>
+          {{ field }}
         </div>
-        <div class="form-group">
-          <input type="email" class="form-control" placeholder="Email" name="email" required>
-        </div>
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Username" name="username" required>
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" placeholder="Password" name="password" required>
-        </div>
+      {% endfor %}
         <div class="col text-center">
           <button type="submit" class="btn btn-custom px-5 text-align-center">Sign Up</button>
         </div>
       </form>
-    {% elif errors %}
-      <p class="text-light"> Errors during signup! <a href="{{ request.path }}" class="text-light">Try again</a></p>
-      <ul class="list-group">
-        {% for error in errors %}
-        <li class="list-group-item">{{ error }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p class="text-light">Signup Successful!</p>
     {% endif %}
-
     </div>
   </div>
   <div class="row">
