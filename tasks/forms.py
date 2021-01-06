@@ -2,6 +2,7 @@ from django import forms
 
 from django.contrib.auth.models import User
 
+
 class SignupForm(forms.ModelForm):
     first_name = forms.CharField(required=True, label="First Name", max_length=50, widget=forms.TextInput(attrs={'placeholder': 'First Name', 'class': 'form-control'}))
     last_name = forms.CharField(required=True, label="Last Name", max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Last Name', 'class': 'form-control'}))

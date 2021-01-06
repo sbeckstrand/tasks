@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django import forms
@@ -7,6 +7,10 @@ from .forms import SignupForm
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth.models import User
+
+from .models import Term
+
+from datetime import datetime
 
 def index(request):
 
@@ -51,8 +55,6 @@ def index(request):
         return render(request, template, context)
 
 
-
-
 @login_required
 def profile(request):
     context = {
@@ -74,11 +76,27 @@ def dashboard(request):
 
 @login_required
 def terms(request, term_id=0):
-    context = {
-        'title': 'Terms'
-    }
 
-    return render(request, 'tasks/terms.html', context)
+    if term_id == 0:
+        terms = Term.objects.filter(user_id=request.user.id)
+        active_term = ""
+
+        try:
+            active_term = terms.filter(endDate__gt=datetime.now())[0]
+        except:
+            active_terms = ""
+
+        expired_terms = terms.filter(endDate__lt=datetime.now())
+        
+        print(len(expired_terms))
+
+        context = {
+            'title': 'Terms',
+            'active_term': active_term,
+            'expired_terms': expired_terms,
+        }
+
+        return render(request, 'tasks/terms.html', context)
 
 @login_required
 def courses(request, course_id=0):

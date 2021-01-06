@@ -1,40 +1,59 @@
 {% include "tasks/base.html" %}
 
-{% block content %}
+{% load widget_tweaks %}
 
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
+<div class="container-fluid">
+{% if successfulSignup %}
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2">
+      <div class="p-3 mt-4" id="signup-form">
+        <h3 class="p-0 text-center">Signup Successful</h3>
+        <div class="text-center">
+          <a href="/account/login" class="btn btn-custom text-center">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% else %}
+  <div class="row">
+    <div class="col-sm-4 offset-sm-4 align-self-center">
+      <form class="mt-4 p-3" id="signup-form" method="POST">{% csrf_token %}
+      {% for field in form %}
+        <div class="form-group">
+          {% render_field field placeholder=field.label class="form-control" %}
+        </div>
+      {% endfor %}
+        <div class="col text-center">
+          <button type="submit" class="btn btn-custom px-5 text-align-center">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 offset-sm-2 mt-3">
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert alert-danger">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
     {% endif %}
-  {% endif %}
+    </div>
+  </div>
+{% endif %}
+</div>
 
-  <form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <table>
-      <tr>
-        <td>{{ form.username.label_tag }}</td>
-        <td>{{ form.username }}</td>
-      </tr>
-      <tr>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-      </tr>
-    </table>
-    <input type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
-
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
-
-{% endblock %}
-
+<style>
+body {
+  background-color: #600047;
+}
+</style>
 
 {% include "tasks/footer.html" %}

@@ -1,5 +1,7 @@
 {% include "tasks/base.html" %}
 
+{% load widget_tweaks %}
+
 <div class="container-fluid">
 {% if successfulSignup %}
   <div class="row">
@@ -14,11 +16,11 @@
   </div>
 {% else %}
   <div class="row">
-    <div class="col-sm-8 offset-sm-2">
+    <div class="col-sm-4 offset-sm-4">
       <form class="mt-4 p-3" id="signup-form" method="POST">{% csrf_token %}
       {% for field in form %}
         <div class="form-group">
-          {{ field }}
+          {% render_field field placeholder=field.label class="form-control" %}
         </div>
       {% endfor %}
         <div class="col text-center">
